@@ -1,0 +1,28 @@
+<mat-grid-list cols="2" rowHeight="600px" gutterSize="0px" class="about-grid">
+  <mat-grid-tile>
+    <div class="left-column">
+      <div class="title"><span>About me</span></div>
+      <div class="description"><span>{{ description }}</span></div>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <div class="right-column">
+      <div class="right-row">
+        <div class="photo">
+          <img [src]="my_photo" alt="myphoto" class="my_photo" />
+        </div>
+        <div class="info">
+          <span class="email-text">Email: wojtyczakuba&#64;gmail.com</span>
+          <a mat-raised-button 
+          color="primary" 
+          class="email-button" 
+          href="assets/cv_file/Jakub_Wojtycza_CV_English.pdf" 
+          download="Jakub_Wojtycza.pdf">
+          Download CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

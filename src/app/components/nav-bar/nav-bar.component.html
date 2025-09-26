@@ -1,0 +1,15 @@
+<div class="home-nav">
+  <button mat-button class="home" (click)="scrollToHome()">Home</button>
+  <button mat-button class="about" (click)="scrollToEducation()">About me</button>
+
+  <button mat-button class="icon-btn" aria-label="LinkedIn" (click)="openLinkedin()">
+    <img [src]="linkedinLogo" alt="LinkedIn" class="linkedin" />
+  </button>
+
+  <button mat-button class="icon-btn" aria-label="Github"  (click)="openGithub()">
+    <img [src]="githubLogo" alt="Github" class="github" />
+  </button>
+
+  <button mat-button class="projects" (click)="scrollToProjects()">Projects</button>
+  <button mat-button class="contact" (click)="scrollToEducation()">Contact</button>
+</div>
