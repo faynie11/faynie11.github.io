@@ -1,15 +1,14 @@
 .main-logo{
-    background-image: url('/assets/bg_website.png');
-    width: 100%;
-    height: 600px;
-    background-size: cover;
-    background-position: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 600px;
+
     .name{
         padding-top: 200px ;
         font-weight: 700;

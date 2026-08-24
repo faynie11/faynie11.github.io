@@ -15,5 +15,5 @@ import { MatButtonModule } from '@angular/material/button';
 export class AboutMeComponent {
   public description = description;
   public education = education;
-  my_photo = '/assets/my_photo.jpg';
+  my_photo = 'assets/my_photo.jpg';
 }

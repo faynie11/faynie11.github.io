@@ -11,8 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
-  linkedinLogo = '/assets/linkedin_logo.svg';
-  githubLogo = '/assets/github_logo.svg';
+  linkedinLogo = 'assets/linkedin_logo.svg';
+  githubLogo = 'assets/github_logo.svg';
 
   scrollToEducation() {
     window.scrollTo({ top: 500, behavior: 'smooth' });
