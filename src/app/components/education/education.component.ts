@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { education } from '../../data/education';
+import { RevealDirective } from '../../shared/reveal.directive';
 
 @Component({
   selector: 'app-education',
   standalone: true,
-  imports: [],
+  imports: [RevealDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './education.component.html',
-  styleUrl: './education.component.scss'
 })
 export class EducationComponent {
-
+  readonly education = education;
 }

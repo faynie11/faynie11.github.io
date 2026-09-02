@@ -1,9 +1,24 @@
-<app-main-header></app-main-header>
-
 <app-nav-bar></app-nav-bar>
 
-<app-about-me></app-about-me>
+<main>
+  <!-- scroll-mt-16 matches the 4rem sticky nav so anchors are not hidden behind it. -->
+  <section id="home" class="scroll-mt-16">
+    <app-main-header></app-main-header>
+  </section>
 
-<app-education></app-education>
+  <section id="about" class="scroll-mt-16">
+    <app-about-me></app-about-me>
+  </section>
 
-<app-projects></app-projects>
+  <section id="education" class="scroll-mt-16">
+    <app-education></app-education>
+  </section>
+
+  <section id="projects" class="scroll-mt-16">
+    <app-projects></app-projects>
+  </section>
+
+  <section id="contact" class="scroll-mt-16">
+    <app-contact></app-contact>
+  </section>
+</main>

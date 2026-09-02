@@ -1,0 +1,126 @@
+<dialog
+  #dialog
+  aria-labelledby="email-dialog-title"
+  class="m-auto w-[calc(100%-2rem)] max-w-lg rounded-2xl bg-white p-0 shadow-2xl backdrop:bg-slate-900/60 backdrop:backdrop-blur-sm dark:bg-slate-900">
+  <div class="p-6">
+    <div class="flex items-start justify-between gap-4">
+      <div class="min-w-0">
+        <h3 id="email-dialog-title" class="text-lg font-semibold text-slate-900 dark:text-white">
+          Send me an email
+        </h3>
+        <p class="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          Write your message here and I&rsquo;ll open it in your email app, ready to send.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        (click)="close()"
+        aria-label="Close"
+        class="-m-1.5 shrink-0 rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 active:scale-90 dark:hover:bg-slate-800">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="mt-5 space-y-4">
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label for="dialog-name" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Your name
+          </label>
+          <input
+            id="dialog-name"
+            type="text"
+            autocomplete="name"
+            [value]="senderName()"
+            (input)="senderName.set($any($event.target).value)"
+            class="block w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-white" />
+        </div>
+
+        <div>
+          <label for="dialog-email" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+            Your email
+          </label>
+          <input
+            id="dialog-email"
+            type="email"
+            autocomplete="email"
+            [value]="senderEmail()"
+            (input)="senderEmail.set($any($event.target).value)"
+            class="block w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-white" />
+        </div>
+      </div>
+
+      <div>
+        <label for="dialog-message" class="mb-1.5 block text-sm font-medium text-slate-700 dark:text-slate-300">
+          Message
+        </label>
+        <textarea
+          id="dialog-message"
+          rows="5"
+          [value]="message()"
+          (input)="message.set($any($event.target).value)"
+          class="block w-full resize-y rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm outline-none transition focus:border-brand-500 focus:ring-2 focus:ring-brand-500/30 dark:border-slate-700 dark:bg-slate-800 dark:text-white"></textarea>
+      </div>
+    </div>
+
+    <div class="mt-5 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+      <button
+        type="button"
+        (click)="close()"
+        class="rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 active:scale-95 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700">
+        Cancel
+      </button>
+
+      <!-- An anchor, not a submit button: there is no backend to post to, so the
+           action is genuinely "open this message somewhere the visitor can send it". -->
+      <a
+        [href]="mailtoUrl()"
+        (click)="close()"
+        [attr.aria-disabled]="canSend() ? null : 'true'"
+        [attr.tabindex]="canSend() ? null : -1"
+        class="inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 active:scale-95 aria-disabled:pointer-events-none aria-disabled:opacity-50">
+        Open in email app
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="mt-5 border-t border-slate-200 pt-4 dark:border-slate-800">
+      <p class="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
+        <span>No email app?</span>
+
+        <a
+          [href]="gmailUrl()"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-semibold text-brand-600 transition hover:text-brand-700 dark:text-brand-400">
+          Open in Gmail
+        </a>
+
+        <span aria-hidden="true">&middot;</span>
+
+        <button
+          type="button"
+          [appCopy]="body()"
+          #copyBody="appCopy"
+          class="font-semibold text-brand-600 transition hover:text-brand-700 active:scale-95 dark:text-brand-400">
+          {{ copyBody.copied() ? 'Copied!' : 'Copy message' }}
+        </button>
+
+        <span aria-hidden="true">&middot;</span>
+
+        <button
+          type="button"
+          [appCopy]="profile.email"
+          #copyAddress="appCopy"
+          class="font-semibold text-brand-600 transition hover:text-brand-700 active:scale-95 dark:text-brand-400">
+          {{ copyAddress.copied() ? 'Copied!' : 'Copy address' }}
+        </button>
+      </p>
+    </div>
+  </div>
+</dialog>

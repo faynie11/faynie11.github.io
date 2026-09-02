@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { description } from '../../data/description'; 
-import { education } from '../../data/education';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatButtonModule } from '@angular/material/button';
- 
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { description } from '../../data/description';
+import { profile } from '../../data/profile';
+import { skills } from '../../data/skills';
+import { CopyTextDirective } from '../../shared/copy-text.directive';
+import { RevealDirective } from '../../shared/reveal.directive';
+
 @Component({
   selector: 'app-about-me',
   standalone: true,
-  imports: [CommonModule, MatGridListModule, MatButtonModule],
+  imports: [RevealDirective, CopyTextDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './about-me.component.html',
-  styleUrls: ['./about-me.component.scss']
 })
 export class AboutMeComponent {
-  public description = description;
-  public education = education;
-  my_photo = 'assets/my_photo.jpg';
+  readonly description = description;
+  readonly profile = profile;
+  readonly skills = skills;
+  readonly myPhoto = 'assets/my_photo.jpg';
 }

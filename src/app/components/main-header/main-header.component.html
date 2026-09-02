@@ -1,6 +1,46 @@
+<div
+  class="relative w-full bg-slate-950 bg-cover bg-center"
+  [style.background-image]="'url(' + background + ')'">
+  <!-- Scrim keeps the text readable over any part of the photo. -->
+  <div class="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/50 to-slate-950/80"></div>
 
+  <div class="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-3xl flex-col items-center justify-center px-6 py-24 text-center">
+    <span
+      class="inline-flex items-center gap-2 rounded-full bg-white/10 py-1 pl-3 pr-3 text-sm font-medium text-white/90 ring-1 ring-white/20">
+      Based in Kraków, Poland
+    </span>
 
-<div class="main-logo" style="background-image: url('assets/bg_website.png')">
-  <span class="name">Jakub Wojtycza</span> <br>
-  <span class="role">Software Engineer</span>
+    <h1 class="mt-6 text-5xl font-bold tracking-tight text-white sm:text-6xl">
+      {{ profile.name }}
+    </h1>
+
+    <p class="mt-4 text-xl font-medium text-transparent bg-gradient-to-r from-brand-300 to-indigo-200 bg-clip-text sm:text-2xl">
+      {{ profile.role }}
+    </p>
+
+    <p class="mx-auto mt-5 max-w-xl text-lg text-slate-200">
+      I build web interfaces with Angular, TypeScript and Tailwind CSS — with an engineering
+      background in Python, C/C++ and signal processing.
+    </p>
+
+    <div class="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
+      <button
+        type="button"
+        (click)="scrollTo('projects')"
+        class="w-full rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 sm:w-auto">
+        View my projects
+      </button>
+
+      <a
+        [href]="profile.cvPath"
+        [download]="profile.cvFileName"
+        class="flex w-full items-center justify-center gap-2 rounded-lg border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10 sm:w-auto">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+        </svg>
+        Download CV
+      </a>
+    </div>
+  </div>
 </div>
